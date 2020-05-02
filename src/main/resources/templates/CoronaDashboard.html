@@ -1,0 +1,155 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>CoronaVirus Tracker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="refresh" content="90">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <style>
+        .rowTextColor {
+            color: blue;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#coronaDB').dataTable();
+    });
+</script>
+<script type="text/javascript">
+    setInterval(function(){
+        $('blink').each(function() {
+            $(this).toggle();
+        });
+    }, 500);
+</script>
+<div class="container">
+    <table>
+        <tr>
+            <td><h2 align="center">India CoronaVirus Cases Tracker </h2></td>
+            <td><blink> (Live) </blink></td>
+        </tr>
+    </table>
+    <table class="table table-hover" id="coronaDBTotal">
+        <thead class="thead-light">
+        <tr>
+            <th><span style="color: darkred; ">Country</span></th>
+            <th><span style="color: darkred; ">Confirmed</span></th>
+            <th><span style="color: darkred; ">Deaths</span></th>
+            <th><span style="color: darkred; ">Recovered</span></th>
+            <th><span style="color: darkred; ">Active</span></th>
+            <th><span style="color: darkred; ">Last Updated</span></th>
+        </tr>
+        </thead>
+        <tr>
+            <td class="rowTextColor">INDIA</td>
+            <td class="rowTextColor">
+                <font style="color:red; font-size: small;"><span th:text="'(⇡'
+                    + ${coronaAllData.total.deltaconfirmed}
+                    + ')'">
+                </span></font>
+                <span th:text="${coronaAllData.total.confirmed}">N/A</span>
+            </td>
+            <td class="rowTextColor">
+                <font style="color:red; font-size: small;"><span th:text="'(⇡'
+                    + ${coronaAllData.total.deltadeaths}
+                    + ')'">
+                </span></font>
+                <span th:text="${coronaAllData.total.deaths}">N/A</span>
+            </td>
+            <td class="rowTextColor">
+                <font style="color:green; font-size: small;"><span th:text="'(⇡'
+                    + ${coronaAllData.total.deltarecovered}
+                    + ')'">
+                </span></font>
+                <span th:text="${coronaAllData.total.recovered}">N/A</span>
+            </td>
+            <td class="rowTextColor" th:text="${coronaAllData.total.active}">N/A</td>
+            <td class="rowTextColor" th:text="${coronaAllData.total.lastupdatedtime}">N/A</td>
+        </tr>
+    </table>
+
+    <b><text style="color: darkred">TESTING:</text></b>
+    <table class="table table-hover" id="coronaDBTestTotal">
+        <thead class="thead-light">
+        <tr>
+<!--            <th><span style="color: darkred; ">Country</span></th>-->
+            <th><span style="color: darkred; ">Individuals</span></th>
+            <th><span style="color: darkred; ">Samples</span></th>
+            <th><span style="color: darkred; ">Samples Today</span></th>
+            <th><span style="color: darkred; ">Positive Samples</span></th>
+            <th><span style="color: darkred; ">Last Updated</span></th>
+        </tr>
+        </thead>
+        <tr>
+<!--            <td class="rowTextColor">INDIA</td>-->
+            <td class="rowTextColor" th:text="${coronaAllData.latestTested.totalindividualstested}">N/A</td>
+            <td class="rowTextColor" th:text="${coronaAllData.latestTested.totalsamplestested}">N/A</td>
+            <td class="rowTextColor" th:text="${coronaAllData.latestTested.samplereportedtoday}">N/A</td>
+            <td class="rowTextColor" th:text="${coronaAllData.latestTested.positivecasesfromsamplesreported}">N/A</td>
+            <td class="rowTextColor" th:text="${coronaAllData.latestTested.updatetimestamp}">N/A</td>
+        </tr>
+    </table>
+
+    <table class="table table-hover" id="coronaDB">
+        <thead class="thead-dark">
+            <tr>
+                <th>State/UT</th>
+                <th>Confirmed</th>
+                <th>Deaths</th>
+                <th>Recovered</th>
+                <th>Active</th>
+                <th>Last Updated</th>
+            </tr>
+        </thead>
+        <tr th:each="eachState : ${coronaAllData.statewise}">
+            <td th:text="${eachState.state}">N/A</td>
+            <td>
+                <font style="color:red; font-size: small;"><span th:text="'(⇡'
+                        + ${eachState.deltaconfirmed}
+                        + ')'">
+                    </span></font>
+                <span th:text="${eachState.confirmed}">N/A</span>
+            </td>
+            <td>
+                <b><font style="color:red; font-size: small;"><span th:text="'(⇡'
+                        + ${eachState.deltadeaths}
+                        + ')'">
+                    </span></font></b>
+                <span th:text="${eachState.deaths}">N/A</span>
+            </td>
+            <td>
+                <b><font style="color:green; font-size: small;"><span th:text="'(⇡'
+                        + ${eachState.deltarecovered}
+                        + ')'">
+                    </span></font></b>
+                <span th:text="${eachState.recovered}">N/A</span>
+            </td>
+            <td th:text="${eachState.active}">N/A</td>
+            <td th:text="${eachState.lastupdatedtime}">N/A</td>
+        </tr>
+    </table>
+</div>
+
+<!-- Source -->
+<div class="footer-copyright text-center py-3">Stats shown above are sourced from:
+    <a href="https://api.covid19india.org"> https://api.covid19india.org</a>
+</div>
+<!-- Source -->
+
+</body>
+
+</html>
