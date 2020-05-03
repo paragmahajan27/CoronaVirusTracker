@@ -1,6 +1,6 @@
 # CoronaVirusTracker (POC)
 ![CoronaVirusTracker_UI](src/main/resources/images/dashboard_home.JPG)
-![CoronaVirusTracker_UI](src/main/resources/images/dashboard_home2.JPG)
+ ![CoronaVirusTracker_UI](src/main/resources/images/dashboard_home2.JPG)
 
 ### Technologies Used:
 **UI**: html, js,jquery,bootstrap, thymeleaf
