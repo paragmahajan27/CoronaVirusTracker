@@ -3,7 +3,7 @@
  ![CoronaVirusTracker_UI](src/main/resources/images/dashboard_home2.JPG)
 
 
-# Docker Hub repo(docker image)
+### Docker Hub repo(docker image)
 https://hub.docker.com/repository/docker/paragmahajan27/coronavirustracker/tags?page=1
 
 ### Technologies Used:
