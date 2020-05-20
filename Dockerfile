@@ -10,6 +10,8 @@ ARG JAR_FILE=target/coronavirus-0.0.1-SNAPSHOT.jar
 # cd /opt/app
 WORKDIR /opt/app
 
+EXPOSE 8081
+
 # cp target/spring-boot-web.jar /opt/app/app.jar
 COPY ${JAR_FILE} app.jar
 
