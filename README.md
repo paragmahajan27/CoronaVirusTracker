@@ -8,7 +8,7 @@ https://hub.docker.com/repository/docker/paragmahajan27/coronavirustracker/tags?
 
 ### Technologies Used:
 **UI**: html, js,jquery,bootstrap, thymeleaf
-**services/controller/backend**: java 14, spring boot 2, spring rest
+**services/controller/backend**: java 14, spring boot 2, spring rest, docker, micrososerives
 **build, packaging, deployment**:maven 
 
-**Addtional technologies to be added**: docker, kubernetetes, micrososerives, spring caching.
+**Addtional technologies to be added**: kubernetes, spring caching.
